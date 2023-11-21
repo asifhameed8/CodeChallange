@@ -14,7 +14,7 @@ namespace CodeChallange.Controllers
     {
         private readonly IAuthService _authService;
 
-        public UserController(AppDbContext context,IAuthService service)
+        public UserController(AppDbContext context, IAuthService service)
         {
             _authService = service;
         }
@@ -29,7 +29,7 @@ namespace CodeChallange.Controllers
         public async Task<IActionResult> AddUser([FromBody] User userObj)
         {
             var result = await _authService.AddUser(userObj);
-            if(result.Success)
+            if (result.Success)
             {
                 return Ok(new
                 {
@@ -47,7 +47,7 @@ namespace CodeChallange.Controllers
         }
 
         [HttpPost("refresh")]
-        public async Task<IActionResult> Refresh([FromBody]TokenApiDto tokenApiDto)
+        public async Task<IActionResult> Refresh([FromBody] TokenApiDto tokenApiDto)
         {
             return ReturnFormattedResponse(await _authService.Refresh(tokenApiDto));
         }
