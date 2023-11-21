@@ -1,0 +1,50 @@
+
+          <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+              <div [className]="role === 'Admin' ? 'panel border bg-white' : ''">
+                  <div class="panel-heading">
+                      <h3 class="pt-3 font-weight-bold">Add Employee</h3>
+                  </div>
+                  <div class="panel-body p-3">
+                      <form [formGroup]="addUserForm" (ngSubmit)="onSubmit()">
+                        <div class="dropdown-div">
+                            <label  class="dropdown-label">Manager: </label>
+                            <div class="dropdown">
+                                <select name="Manager" formControlName="managerId" class="rounded-inputs20 select-select col-md-3 form-select w-50">
+                                    <option [value]="-1">---SELECT-----</option>
+                                    <option *ngFor="let user of users"  [value]="user.id">{{user.firstName}} {{ ' ' }}{{user.lastName}}</option>
+                                </select>
+                            </div>
+                            </div>
+                          <div class="form-group pt-3">
+                              <div class="input-field" [class.error]="addUserForm.controls['firstName'].dirty && addUserForm.hasError('required','firstName')">  <input formControlName="firstName" type="text" placeholder="First Name"> </div>
+                          </div>
+                          <small *ngIf="addUserForm.controls['firstName'].dirty && addUserForm.hasError('required','firstName')" class="text-danger">*First Name is required*</small>
+                          <div class="form-group pt-3">
+                              <div class="input-field" [class.error]="addUserForm.controls['lastName'].dirty && addUserForm.hasError('required','lastName')">  <input formControlName="lastName" type="text" placeholder="Last Name"> </div>
+                          </div>
+                          <small *ngIf="addUserForm.controls['lastName'].dirty && addUserForm.hasError('required','lastName')" class="text-danger">*Last Name is required*</small>
+                          <div class="form-group pt-3">
+                              <div class="input-field" [class.error]="addUserForm.controls['userName'].dirty && addUserForm.hasError('required','userName')">  <input formControlName="userName" type="text" placeholder="User Name"> </div>
+                          </div>
+                          <small *ngIf="addUserForm.controls['userName'].dirty && addUserForm.hasError('required','userName')" class="text-danger">*Username is required*</small>
+                          <div class="form-group pt-3">
+                              <div class="input-field" [class.error]="addUserForm.controls['email'].dirty && addUserForm.hasError('required','email')">  <input formControlName="email" type="text" placeholder="Email"> </div>
+                          </div>
+                          <small *ngIf="addUserForm.controls['email'].dirty && addUserForm.hasError('required','email')" class="text-danger">*Email is required*</small>
+                          <div class="form-group pt-3">
+                            <div class="input-field" [class.error]="addUserForm.controls['role'].dirty && addUserForm.hasError('required','role')">  <input formControlName="role" type="text" placeholder="Role"> </div>
+                        </div>
+                        <small *ngIf="addUserForm.controls['role'].dirty && addUserForm.hasError('required','role')" class="text-danger">*Role is required*</small>
+                        <div class="form-group pt-3">
+                              <div class="input-field" [class.error]="addUserForm.controls['password'].dirty && addUserForm.hasError('required','password')"> <input formControlName="password" [type]="type" placeholder="Password"> <button (click)="hideShowPass()" type="button" class="bg-white text-muted"> <span class="fa {{eyeIcon}}"></span> </button>                                    </div>
+                          </div>
+                          <small *ngIf="addUserForm.controls['password'].dirty && addUserForm.hasError('required','password')" class="text-danger">*Password is required*</small>
+
+                          <button type="submit" class="btn btn-primary btn-block mt-4 w-100">Add</button>
+
+                      </form>
+                  </div>
+
+              </div>
+          </div>
+
